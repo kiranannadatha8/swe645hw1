@@ -1,0 +1,51 @@
+:root {
+  --gmu-green: #006633;
+  --gmu-yellow: #ffcc33;
+  --page-bg: #f5f5f5;
+}
+
+/* Base page styles */
+body {
+  background-color: var(--page-bg);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+/* Button styles using GMU colors */
+.btn {
+  background-color: var(--gmu-yellow) !important;
+  color: #000 !important;
+}
+
+/* Header styling for the GMU brand block */
+.gmu-header {
+  padding: 1.25rem;
+  border: 5px solid var(--gmu-green);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings use GMU green */
+h1,
+h2 {
+  color: var(--gmu-green) !important;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Table header color uses GMU yellow */
+.table-success {
+  background-color: var(--gmu-yellow) !important;
+  color: #000 !important;
+}
+
+.table-success th {
+  background-color: var(--gmu-yellow) !important;
+}
+
+/* Style for required-field asterisks */
+label span {
+  color: red;
+  font-weight: bold;
+}

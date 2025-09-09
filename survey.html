@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CS Department Survey</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container my-5">
+      <h1 class="text-success text-center mb-4">
+        Computer Science Department Survey
+      </h1>
+
+      <!-- Back button -->
+      <div class="text-start mb-3">
+        <a href="index.html" class="btn btn-outline-secondary">
+          ← Back to Home
+        </a>
+      </div>
+
+      <form
+        method="post"
+        autocomplete="on"
+        class="card p-4 shadow-lg bg-white rounded"
+      >
+        <!-- User Information -->
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="username" class="form-label"
+              >Full Name <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              required
+              autofocus
+              placeholder="John Doe"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label"
+              >Email <span class="text-danger">*</span></label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              required
+              placeholder="example@gmu.edu"
+            />
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-md-6">
+            <label for="address" class="form-label"
+              >Street Address <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              id="address"
+              name="address"
+              class="form-control"
+              required
+              placeholder="1234 University Dr"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="city" class="form-label"
+              >City <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              id="city"
+              name="city"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-md-4">
+            <label for="state" class="form-label">State</label>
+            <input type="text" id="state" name="state" class="form-control" />
+          </div>
+          <div class="col-md-4">
+            <label for="zip" class="form-label">Zip Code</label>
+            <input
+              type="text"
+              id="zip"
+              name="zip"
+              class="form-control"
+              placeholder="12345"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="phone" class="form-label">Telephone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-control"
+              placeholder="123-456-7890"
+            />
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <label for="url" class="form-label"
+            >Personal Website / Portfolio</label
+          >
+          <input
+            type="url"
+            id="url"
+            name="url"
+            class="form-control"
+            placeholder="https://example.com"
+          />
+        </div>
+
+        <div class="mt-3">
+          <label for="date" class="form-label">Date of Survey</label>
+          <input type="date" id="date" name="date" class="form-control" />
+        </div>
+
+        <!-- Checkboxes -->
+        <div class="mt-4">
+          <label class="form-label"
+            >What did you like most about the campus?</label
+          ><br />
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              id="students"
+              name="liked[]"
+              value="students"
+              class="form-check-input"
+            />
+            <label for="students" class="form-check-label">Students</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              id="location"
+              name="liked[]"
+              value="location"
+              class="form-check-input"
+            />
+            <label for="location" class="form-check-label">Location</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              id="campus"
+              name="liked[]"
+              value="campus"
+              class="form-check-input"
+            />
+            <label for="campus" class="form-check-label">Campus</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              id="atmosphere"
+              name="liked[]"
+              value="atmosphere"
+              class="form-check-input"
+            />
+            <label for="atmosphere" class="form-check-label">Atmosphere</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              id="dorm"
+              name="liked[]"
+              value="dorm rooms"
+              class="form-check-input"
+            />
+            <label for="dorm" class="form-check-label">Dorm Rooms</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              id="sports"
+              name="liked[]"
+              value="sports"
+              class="form-check-input"
+            />
+            <label for="sports" class="form-check-label">Sports</label>
+          </div>
+        </div>
+
+        <!-- Radio Buttons -->
+        <div class="mt-4">
+          <label class="form-label"
+            >How did you become interested in the university?</label
+          ><br />
+          <div class="form-check">
+            <input
+              type="radio"
+              id="friends"
+              name="interest"
+              value="friends"
+              class="form-check-input"
+            />
+            <label for="friends" class="form-check-label">Friends</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              id="tv"
+              name="interest"
+              value="television"
+              class="form-check-input"
+            />
+            <label for="tv" class="form-check-label">Television</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              id="internet"
+              name="interest"
+              value="internet"
+              class="form-check-input"
+            />
+            <label for="internet" class="form-check-label">Internet</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              id="other"
+              name="interest"
+              value="other"
+              class="form-check-input"
+            />
+            <label for="other" class="form-check-label">Other</label>
+          </div>
+        </div>
+
+        <!-- Graduation -->
+        <div class="row g-3 mt-4">
+          <div class="col-md-6">
+            <label for="gradmonth" class="form-label"
+              >High School Graduation Month</label
+            >
+            <input
+              list="months"
+              id="gradmonth"
+              name="gradmonth"
+              class="form-control"
+            />
+            <datalist id="months">
+              <option value="January"></option>
+              <option value="February"></option>
+              <option value="March"></option>
+              <option value="April"></option>
+              <option value="May"></option>
+              <option value="June"></option>
+              <option value="July"></option>
+              <option value="August"></option>
+              <option value="September"></option>
+              <option value="October"></option>
+              <option value="November"></option>
+              <option value="December"></option>
+            </datalist>
+          </div>
+          <div class="col-md-6">
+            <label for="gradyear" class="form-label">Graduation Year</label>
+            <input
+              type="number"
+              id="gradyear"
+              name="gradyear"
+              class="form-control"
+              placeholder="2025"
+            />
+          </div>
+        </div>
+
+        <!-- Dropdown -->
+        <div class="mt-4">
+          <label for="recommend" class="form-label"
+            >Likelihood of recommending GMU</label
+          >
+          <select id="recommend" name="recommend" class="form-select">
+            <option value="very likely">Very Likely</option>
+            <option value="likely">Likely</option>
+            <option value="unlikely">Unlikely</option>
+          </select>
+        </div>
+
+        <div class="mt-4">
+          <label for="raffle" class="form-label"
+            >Raffle (enter at least 10 comma-separated numbers between 1 and
+            100)</label
+          >
+          <input
+            type="text"
+            id="raffle"
+            name="raffle"
+            class="form-control"
+            placeholder="e.g. 5, 12, 99, 1, 20, ..."
+            required
+          />
+          <div id="raffleHelp" class="form-text">
+            These numbers will be used to determine eligibility for a free movie
+            ticket.
+          </div>
+          <div class="invalid-feedback" id="raffleError">
+            Please enter at least 10 numbers between 1 and 100, separated by
+            commas.
+          </div>
+        </div>
+
+        <!-- Comments -->
+        <div class="mt-4">
+          <label for="comments" class="form-label">Additional Comments</label>
+          <textarea
+            id="comments"
+            name="comments"
+            rows="4"
+            class="form-control"
+            placeholder="Your feedback..."
+          ></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success btn-lg">
+            Submit Survey
+          </button>
+          <button type="submit" class="btn btn-outline-secondary btn-lg">
+            Cancel Survey
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
