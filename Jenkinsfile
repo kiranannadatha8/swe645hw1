@@ -4,38 +4,48 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         IMAGE_NAME = "kiran1703/swe645hw2"
-        IMAGE_TAG = "latest"
-        KUBECONFIG = "/root/.kube/config"
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        KUBECONFIG_FILE = credentials('kubeconfig-prod')
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
                 git branch: 'master',
                     url: 'https://github.com/kiranannadatha8/swe645hw1.git'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Docker Build & Push') {
             steps {
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
-            }
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                sh """
-                  echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
-                  docker push ${IMAGE_NAME}:${IMAGE_TAG}
-                """
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+                    sh """
+                      echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin
+                      docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -t ${IMAGE_NAME}:latest .
+                      docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                      docker push ${IMAGE_NAME}:latest
+                    """
+                }
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh "kubectl --kubeconfig=${KUBECONFIG} apply -f k8s/deployment.yaml"
-                sh "kubectl --kubeconfig=${KUBECONFIG} apply -f k8s/service.yaml"
+                withCredentials([file(credentialsId: 'kubeconfig-prod', variable: 'KUBECONFIG')]) {
+                    sh """
+                      kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml
+                      kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml
+                      kubectl --kubeconfig=$KUBECONFIG set image deployment/swe645hw2 swe645hw2=${IMAGE_NAME}:${IMAGE_TAG} --record
+                      kubectl --kubeconfig=$KUBECONFIG rollout status deployment/swe645hw2 --timeout=120s
+                    """
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker logout || true'
         }
     }
 }
