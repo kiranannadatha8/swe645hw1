@@ -15,7 +15,7 @@ spec:
         app: swe645hw2
     spec:
       containers:
-      - name: swe645hw2
-        image: kiran1703/swe645hw2:latest
-        ports:
-        - containerPort: 80
+        - name: swe645hw2
+          image: kiran1703/swe645hw2:latest
+          ports:
+            - containerPort: 80
