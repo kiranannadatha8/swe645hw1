@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         IMAGE_NAME = "kiran1703/swe645hw2"
         IMAGE_TAG = "latest"
-        KUBECONFIG = "/root/.kube/config"
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
     stages {
