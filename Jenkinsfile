@@ -31,13 +31,14 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig-prod', variable: 'KUBECONFIG')]) {
-                    sh """
-                      kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml
-                      kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml
-                      kubectl --kubeconfig=$KUBECONFIG set image deployment/swe645hw2 swe645hw2=${IMAGE_NAME}:${IMAGE_TAG} --record
-                      kubectl --kubeconfig=$KUBECONFIG rollout status deployment/swe645hw2 --timeout=120s
-                    """
+                withCredentials([file(credentialsId: 'kubeconfig-prod', variable: 'KUBECONFIG_FILE')]) {
+                    sh '''
+                      set -e
+                      kubectl --kubeconfig=$KUBECONFIG_FILE apply -f deployment.yaml
+                      kubectl --kubeconfig=$KUBECONFIG_FILE apply -f service.yaml
+                      kubectl --kubeconfig=$KUBECONFIG_FILE set image deployment/swe645hw2 swe645hw2=${IMAGE_NAME}:${IMAGE_TAG} --record
+                      kubectl --kubeconfig=$KUBECONFIG_FILE rollout status deployment/swe645hw2 --timeout=120s
+                    '''
                 }
             }
         }
