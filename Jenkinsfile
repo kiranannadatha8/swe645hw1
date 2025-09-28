@@ -34,8 +34,8 @@ pipeline {
                 withCredentials([file(credentialsId: 'kubeconfig-prod', variable: 'KUBECONFIG_FILE')]) {
                     sh '''
                       set -e
-                      kubectl apply -f deployment.yaml --kubeconfig=$KUBECONFIG_FILE
-                      kubectl apply -f service.yaml --kubeconfig=$KUBECONFIG_FILE
+                      kubectl apply -f k8s/deployment.yaml --kubeconfig=$KUBECONFIG_FILE
+                      kubectl apply -f k8s/service.yaml --kubeconfig=$KUBECONFIG_FILE
                       kubectl set image deployment/swe645hw2 swe645hw2=${IMAGE_NAME}:${IMAGE_TAG} --record --kubeconfig=$KUBECONFIG_FILE
                       kubectl rollout status deployment/swe645hw2 --timeout=120s --kubeconfig=$KUBECONFIG_FILE
                     '''
