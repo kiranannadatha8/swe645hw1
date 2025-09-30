@@ -38,6 +38,9 @@ pipeline {
                       kubectl apply -f k8s/service.yaml --kubeconfig=$KUBECONFIG_FILE
                       kubectl set image deployment/swe645hw2 swe645hw2=${IMAGE_NAME}:${IMAGE_TAG} --record --kubeconfig=$KUBECONFIG_FILE
                       kubectl rollout status deployment/swe645hw2 --timeout=120s --kubeconfig=$KUBECONFIG_FILE
+                      kubectl get deployment swe645hw2 -o wide --kubeconfig=$KUBECONFIG_FILE
+                      kubectl get pods -l app=swe645hw2 -o wide --kubeconfig=$KUBECONFIG_FILE
+                      kubectl get svc swe645hw2 -o wide --kubeconfig=$KUBECONFIG_FILE
                     '''
                 }
             }
