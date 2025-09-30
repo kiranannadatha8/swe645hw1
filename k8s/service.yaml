@@ -5,10 +5,10 @@ metadata:
   labels:
     app: swe645hw2
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: swe645hw2
   ports:
     - port: 80       
       targetPort: 80
-      protocol: TCP
+      nodePort: 30080
